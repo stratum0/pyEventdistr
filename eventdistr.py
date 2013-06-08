@@ -28,7 +28,8 @@ def send_event(name, data=None,version=1):
 		data = "%s=%s" % (name, data)
 	else:
 		data = name
-	s.sendto(EVENTDISTR_COMMAND % (version, data) , (EVENTDISTR_IP, EVENTDISTR_PORT))
+	s.sendto(EVENTDISTR_COMMAND % (version, data) , (EVENTDISTR_IP,
+		EVENTDISTR_PORT))
 	s.close()
 
 def parse_event(data):
