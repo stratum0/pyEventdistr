@@ -1,0 +1,5 @@
+#!/usr/bin/env python2
+import eventdistr
+import sys
+if __name__ == "__main__":
+	eventdistr.virtual_msg(" ".join(sys.argv[1:]))

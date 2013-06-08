@@ -1,0 +1,35 @@
+#!/usr/bin/env python2
+import eventdistr
+import sys
+import argparse
+if __name__ == "__main__":
+	areas = {
+	eventdistr.AREA_FRICKEL: "Frickelraum",
+	eventdistr.AREA_LOUNGE: "Lounge",
+	eventdistr.AREA_BATH: "Bath",
+	eventdistr.AREA_KITCHEN: "Kitchen"
+	}
+	area_list = []
+	area_names = areas.keys()
+	area_names.sort()
+	for area in area_names:
+		area_list.append("%s: %s" % (area, areas[area]))
+	parser = argparse.ArgumentParser(description='Process some integers.')
+	parser.add_argument('artist', metavar='artist', help='the artist the song')
+	parser.add_argument('title', metavar='title', help='the title of the song')
+	parser.add_argument('--area', '-a', default=eventdistr.AREA_LOUNGE, help='Area where the song is played: '+", ".join(area_list))
+
+	args = parser.parse_args()
+	area = args.area.upper()
+	found = True
+	if area not in areas:
+		found = False
+		for area_id, name in areas.items():
+			if name.upper() == area:
+				area = area_id
+				found = True
+				break
+	if not found:
+		print "Unkown area '%s'" % area
+		exit(1)
+	eventdistr.now_playing(args.artist, args.title, area)

@@ -1,0 +1,17 @@
+#!/usr/bin/env python2
+import eventdistr
+import time
+
+lastopen = 0
+def opener(version, cmd, data):
+	global lastopen
+	if cmd == eventdistr.EVENT_DING_DONG:
+		now = time.time()
+		if now - lastopen > 15:
+			print "Somebody is ringing the door, let me fix that for you"
+			eventdistr.open_door()
+			lastopen = now
+
+
+if __name__ == "__main__":
+	eventdistr.run_listener(opener)

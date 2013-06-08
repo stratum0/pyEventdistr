@@ -1,0 +1,4 @@
+#!/usr/bin/env python2
+import eventdistr
+if __name__ == "__main__":
+	eventdistr.open_door()
