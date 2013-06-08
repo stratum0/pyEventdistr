@@ -6,6 +6,7 @@ import json
 import datetime
 
 SPACE_API_URL = "http://status.stratum0.org/status.json"
+
 def is_open():
 	aResp = urllib2.urlopen(SPACE_API_URL)
 	data = aResp.read();
@@ -13,7 +14,10 @@ def is_open():
 	if "isOpen" in data:
 		return data["isOpen"]
 	return False
+
+
 lastopen = 0
+
 def opener(version, cmd, data):
 	global lastopen
 	if cmd == eventdistr.EVENT_DING_DONG:
@@ -29,5 +33,4 @@ def opener(version, cmd, data):
 
 
 if __name__ == "__main__":
-	#print is_open()
 	eventdistr.run_listener(opener)
