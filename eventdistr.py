@@ -21,7 +21,7 @@ AREA_KITCHEN = "K"
 
 
 
-def send_event(name, data=None,version=1):
+def send_event(name, data=None,version=2):
 	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 	s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST,1)
 	if data:
