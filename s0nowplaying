@@ -17,8 +17,8 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Process some integers.')
 	parser.add_argument('artist', metavar='artist', help='the artist the song')
 	parser.add_argument('title', metavar='title', help='the title of the song')
-	parser.add_argument('--area', '-a', default=eventdistr.AREA_LOUNGE, help='Area
-		where the song is played: '+", ".join(area_list))
+	parser.add_argument('--area', '-a', default=eventdistr.AREA_LOUNGE,
+		help='Area where the song is played: '+", ".join(area_list))
 
 	args = parser.parse_args()
 	area = args.area.upper()
