@@ -19,6 +19,11 @@ def propChangedCallback(iface, changedProps, invalidatedProps):
 
 			eventdistr.now_playing(artist, title, area)
 
+		elif("PlaybackStatus" in changedProps.keys()
+				and changedProps["PlaybackStatus"] == u'Stopped'):
+			print("Playback stopped.")
+			eventdistr.playback_stopped(area)
+
 if __name__ == "__main__":
 	# parse argument
 	areas = {
