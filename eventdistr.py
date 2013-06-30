@@ -51,7 +51,7 @@ def ring():
 	send_clock(EVENT_DING_DONG)
 
 def now_playing(artist, title, area=AREA_LOUNGE):
-	send_event(EVENT_NOW_PLAYING, "%s\x00%s\x00%s" % (area, artist, title))
+	send_event(EVENT_NOW_PLAYING, "%s\x00%s\x00%s\x00" % (area, artist, title))
 
 def virtual_msg(msg):
 	send_event(EVENT_VIRTUAL_MSG, msg) 
