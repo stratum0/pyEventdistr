@@ -1,11 +1,12 @@
 #!/usr/bin/env python2
 import eventdistr
+from datetime import datetime
 
 def opener(version, cmd, data):
 	if data:
-		print "%s: %s (v%d)" % (cmd, repr(data), version)
+		print "%s: %s=%s (v%d)" % (datetime.now(), cmd, repr(data), version)
 	else:
-		print "%s (v%d)" % (cmd, version)
+		print "%s: %s (v%d)" % (datetime.now(), cmd, version)
 
 
 if __name__ == "__main__":
