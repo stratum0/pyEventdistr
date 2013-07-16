@@ -8,12 +8,22 @@ import datetime
 SPACE_API_URL = "http://status.stratum0.org/status.json"
 
 def is_open():
-	aResp = urllib2.urlopen(SPACE_API_URL)
-	data = aResp.read();
-	data = json.loads(data)
-	if "isOpen" in data:
-		return data["isOpen"]
+	try:
+		aResp = urllib2.urlopen(SPACE_API_URL)
+		data = aResp.read();
+		data = json.loads(data)
+		if "isOpen" in data:
+			return data["isOpen"]
+	except urllib2.HTTPError, e:
+		print e
+	except urllib2.URLError, e:
+		print e
+		return False
+	except ValueError, e:
+		print e
 	return False
+
+	
 
 
 lastopen = 0
