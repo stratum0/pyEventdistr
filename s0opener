@@ -46,3 +46,4 @@ def opener(version, cmd, data):
 
 if __name__ == "__main__":
 	eventdistr.run_listener(opener)
+# vim: set noet sw=2 ts=2 ai si:
