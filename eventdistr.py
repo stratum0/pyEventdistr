@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf8 -*-
 import socket
 import re
 
@@ -23,7 +24,7 @@ AREA_KITCHEN = "K"
 
 def send_event(name, data=None,version=1):
 	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST,1)
+	s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 	if data:
 		data = "%s=%s" % (name, data)
 	else:
@@ -50,7 +51,14 @@ def open_door():
 def ring():
 	send_clock(EVENT_DING_DONG)
 
+def check_utf8(string):
+	if isinstance(string, unicode):
+		return string.encode("utf8")
+	return string
+
 def now_playing(artist, title, area=AREA_LOUNGE):
+	artist = check_utf8(artist)
+	title = check_utf8(title)
 	send_event(EVENT_NOW_PLAYING, "%s\x00%s\x00%s\x00" % (area, artist, title))
 
 def playback_stopped(area=AREA_LOUNGE):
