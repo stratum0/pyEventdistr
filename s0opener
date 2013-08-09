@@ -4,12 +4,14 @@ import time
 import urllib
 import json
 
+SPACE_API_URL = "http://status.stratum0.org/status.json"
+
 """ Returns boolean whether space is open, or None of error """
 def fetchStatus():
 	s = None
 	o = None
 	try:
-		u = urllib.urlopen("http://status.stratum0.org/status.json-test")
+		u = urllib.urlopen(SPACE_API_URL)
 		s = u.read()
 	except IOError as e:
 		print "Oops. Could not retrieve status: %s" % e
