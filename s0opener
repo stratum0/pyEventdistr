@@ -6,8 +6,8 @@ import json
 
 SPACE_API_URL = "http://status.stratum0.org/status.json"
 
-""" Returns boolean whether space is open, or None of error """
 def fetchStatus():
+	"""Returns a boolean whether space is open, or None on error"""
 	s = None
 	o = None
 	try:
@@ -35,7 +35,7 @@ def opener(version, cmd, data):
 	global lastopen
 	if cmd == eventdistr.EVENT_DING_DONG:
 		now = time.time()
-		if now - lastopen > 15:
+		if now - lastopen > 3:
 			if fetchStatus():
 				print "Somebody is ringing the door, let me fix that for you"
 				time.sleep(2)
