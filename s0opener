@@ -38,7 +38,6 @@ def opener(version, cmd, data):
 		if now - lastopen > 3:
 			if fetchStatus():
 				print "Somebody is ringing the door, let me fix that for you"
-				time.sleep(2)
 				eventdistr.open_door()
 				lastopen = now
 			else:
