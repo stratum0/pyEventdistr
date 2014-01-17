@@ -5,6 +5,7 @@ import urllib
 import json
 
 SPACE_API_URL = "http://status.stratum0.org/status.json"
+SPACE_API_URL = "http://statusberry.local/status.json"
 
 def fetchStatus():
 	"""Returns a boolean whether space is open, or None on error"""
@@ -23,9 +24,9 @@ def fetchStatus():
 		print "JSON string was: %s" % s
 		return None
 	# strict type-checking
-	if o["open"] == True:
+	if o["isOpen"] == True:
 		return True;
-	if o["open"] == False:
+	if o["isOpen"] == False:
 		return False;
 	else:
 		return None;
