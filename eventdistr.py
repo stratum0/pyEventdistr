@@ -38,6 +38,8 @@ def parse_event(data):
 	if not data:
 		return None
 	match = EVENTDISTR_RE.match(data)
+	if not match:
+		return None
 	version, cmd, donotuse, data = match.groups()
 	return (int(version), cmd, data)
 
