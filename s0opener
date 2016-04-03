@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import eventdistr
 import time
-import urllib
+import urllib2
 import json
 import datetime
 
@@ -22,7 +22,7 @@ def fetchStatus():
 	s = None
 	o = None
 	try:
-		u = urllib.urlopen(SPACE_API_URL)
+		u = urllib2.urlopen(SPACE_API_URL, timeout=10)
 		s = u.read()
 	except IOError as e:
 		print "Oops. Could not retrieve status: %s" % e
