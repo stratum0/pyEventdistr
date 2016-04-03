@@ -3,8 +3,19 @@ import eventdistr
 import time
 import urllib
 import json
+import datetime
 
 SPACE_API_URL = "http://status.stratum0.org/status.json"
+last_status = False
+last_status_t = 0
+
+def fetchCachedStatus():
+	global last_status, last_status_t
+	now = time.time()
+	if now - last_status_t > 30:
+		last_status = fetchStatus()
+		last_status_t = time.time()
+	return last_status
 
 def fetchStatus():
 	"""Returns a boolean whether space is open, or None on error"""
@@ -15,7 +26,7 @@ def fetchStatus():
 		s = u.read()
 	except IOError as e:
 		print "Oops. Could not retrieve status: %s" % e
-		return None
+		return True #FIXME
 	try:
 		o = json.loads(s)
 	except ValueError as e:
@@ -36,7 +47,8 @@ def opener(version, cmd, data):
 	if cmd == eventdistr.EVENT_DING_DONG:
 		now = time.time()
 		if now - lastopen > 1:
-			if fetchStatus():
+			print datetime.datetime.now()
+			if fetchCachedStatus():
 				print "Somebody is ringing the door, let me fix that for you"
 				eventdistr.open_door()
 				lastopen = now
